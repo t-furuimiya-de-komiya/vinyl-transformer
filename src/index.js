@@ -36,7 +36,7 @@ module.exports = function vinylTransformer(opts, f, recv)
 
             filename = file.path
 
-            const ctx = {file, value, filename}
+            const ctx = {file, value, filename, stream: self}
 
             let ret = await f.call(recv || ctx, file, ctx)
 

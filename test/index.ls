@@ -7,6 +7,7 @@ suite \vinylTransformer
 
 function vtrans opts, f, recv
     t = vinyl-transformer opts, f, recv
+    stream: t
     write: (x) ->
         new Promise (resolve, reject) ->
             t.once \error, reject
@@ -30,6 +31,7 @@ test 'transformer args' ->
         .to.be.equal data
         .to.be.equal file
         expect @filename .to.be.eql \hoge
+        expect @stream .to.be.equal t.stream
     expect t.write data
     .to.become data
 
